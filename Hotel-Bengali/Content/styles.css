@@ -1,0 +1,17 @@
+﻿body,
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('../assets/paven.png');
+}
+
+.fondo-transparente {
+    background: #00000023;
+}
+
+.fondo-transparentedos {
+    background-color: rgba(197, 216, 216, 0.5);
+}
