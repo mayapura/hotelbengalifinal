@@ -1,4 +1,7 @@
-﻿@{
+﻿@model Hotel_Bengali.Models.vista
+
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -40,11 +43,6 @@
                         <div class="d-grid gap-2 mx-auto my-auto">
                             <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#myModal">Reservar ahora</button>
                         </div>
-
-                        <!-- Button trigger modal -->
-                        <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                            Launch demo modal
-                        </button>-->
                     </div>
                 </div>
             </div>
@@ -110,28 +108,111 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        @using(Html.BeginForm("GuardarReserva", "Home", FormMethod.Post))
+        { 
         <div class="modal-content">
             <div class="modal-header">
-                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="myModalLabel">Formulario</h4>
             </div>
             <div class="modal-body">
-                <div class="row p-4">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre</label>
-                    <div class="col">
-
-                        <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                <div class="text-center">
+                    <h3>Datos de Reserva</h3>
+                </div>
+                <div class="row p-2 pb-0">
+                    <div class="col-md-4">
+                        @Html.LabelFor(x => x.Habitacion.Numero,"Habitación N°", new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Habitacion.Numero, new { @class = "form-control", @disabled = "disabled" })
                     </div>
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Apellido</label>
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+                    <div class="col-md-4">
+                        @Html.LabelFor(x => x.Reserva.FechaIngreso,"Fecha Ingreso", new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Reserva.FechaIngreso, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.LabelFor(x => x.Reserva.FechaEgreso,"Fecha Egreso", new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Reserva.FechaEgreso, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
                     </div>
                 </div>
+                <div class="row p-2 pb-0">
+                    <div class="col-md-4">
+                        @Html.LabelFor(x => x.Pago.Monto, new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Pago.Monto, new { @class = "form-control", placeholder = "Monto" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.LabelFor(x => x.Pago.FormaPago, "Forma de Pago", new { @class = "col-sm-12 col-form-label" })
+                        @Html.DropDownListFor(x => x.Pago.FormaPago, (SelectList)ViewBag.ListaFormasDePago, "Seleccione una opcion", new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.LabelFor(x => x.Pago.FechaPago, "Fecha de Pago", new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Pago.FechaPago, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3>Datos Personales</h3>
+                </div>
+                <div class="row p-2 pb-0">
+
+                    <div class="col-md-6">
+                        @Html.LabelFor(x => x.Huesped.Nombre, new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Huesped.Nombre, new { @class = "form-control", placeholder = "Nombre" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.LabelFor(x => x.Huesped.Apellido, new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Huesped.Apellido, new { @class = "form-control", placeholder = "Apellido" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.LabelFor(x => x.Huesped.Dni,"DNI", new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Huesped.Dni, new { @class = "form-control", placeholder = "DNI" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.LabelFor(x => x.Huesped.Genero,"Género", new { @class = "col-sm-12 col-form-label" })
+                        @Html.DropDownListFor(x => x.Huesped.Genero, (SelectList)ViewBag.ListaGenero, "Seleccione una opcion", new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.LabelFor(x => x.Huesped.FechaNacimiento,"Fecha de Nacimiento", new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Huesped.FechaNacimiento, "{0:yyyy-MM-dd}", new { @class = "form-control", Type ="date", placeholder = "País" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.LabelFor(x => x.Huesped.Nacionalidad, new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Huesped.Nacionalidad, new { @class = "form-control", placeholder = "Nacionalidad" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.LabelFor(x => x.Huesped.Telefono, new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Huesped.Telefono,"Teléfono", new { @class = "form-control", placeholder = "Teléfono" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.LabelFor(x => x.Huesped.Email, new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Huesped.Email, new { @class = "form-control", placeholder = "Email" })
+                    </div>
+
+                    <div class="col-md-6">
+                        @Html.LabelFor(x => x.Huesped.Domicilio.Calle, new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Huesped.Domicilio.Calle, new { @class = "form-control", placeholder = "Calle" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.LabelFor(x => x.Huesped.Domicilio.Ciudad, new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Huesped.Domicilio.Ciudad, new { @class = "form-control", placeholder = "Ciudad" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.LabelFor(x => x.Huesped.Domicilio.Provincia, new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Huesped.Domicilio.Provincia, new { @class = "form-control", placeholder = "Provincia" })
+                    </div>
+                    <div class="col-lg-4">
+                        @Html.LabelFor(x => x.Huesped.Domicilio.Pais,"País", new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Huesped.Domicilio.Pais, new { @class = "form-control", placeholder = "País" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.LabelFor(x => x.Huesped.Domicilio.CodigoPostal, "Codigo Postal", new { @class = "col-sm-12 col-form-label" })
+                        @Html.TextBoxFor(x => x.Huesped.Domicilio.CodigoPostal, new { @class = "form-control", placeholder = "Código Postal" })
+                    </div>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
         </div>
+        }
     </div>
 </div>

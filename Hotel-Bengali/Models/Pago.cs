@@ -7,11 +7,11 @@ namespace Hotel_Bengali.Models
 {
     public class Pago
     {
-        public int id { get; set; }
-        public Double monto { get; set; }
-        public DateTime fechaPago { get; set; }
-        public string formaPago { get; set; }
-        public Reserva reserva { get; set; }
+        public int Id { get; set; }
+        public Double Monto { get; set; }
+        public DateTime FechaPago { get; set; }
+        public string FormaPago { get; set; }
+        public Reserva Reserva { get; set; }
 
     }          
 }

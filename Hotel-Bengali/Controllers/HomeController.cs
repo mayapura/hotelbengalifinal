@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hotel_Bengali.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,26 @@ namespace Hotel_Bengali.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            //ViewBag.Message = "Your application Index page.";
+            var vistaModel = new vista();
+
+            var ListaFormasDePago = new List<SelectListItem>();
+            ListaFormasDePago.Add(new SelectListItem {Value = "1", Text = "Efectivo"});
+            ListaFormasDePago.Add(new SelectListItem { Value = "2", Text = "Debito" });
+            ListaFormasDePago.Add(new SelectListItem { Value = "3", Text = "Credito" });
+
+            var TipoPagos = new SelectList(ListaFormasDePago, "Value", "Text");
+            ViewBag.ListaFormasDePago = TipoPagos;
+
+            var ListaGenero = new List<SelectListItem>();
+            ListaGenero.Add(new SelectListItem {Value ="1", Text = "Femenino" });
+            ListaGenero.Add(new SelectListItem { Value = "2", Text = "Masculino" });
+            ListaGenero.Add(new SelectListItem { Value = "3", Text = "Otro" });
+
+            var TipoGenero = new SelectList(ListaGenero, "Value", "Text");
+            ViewBag.ListaGenero = TipoGenero;
+
+            return View(vistaModel);
         }
 
         public ActionResult About()
@@ -32,6 +52,13 @@ namespace Hotel_Bengali.Controllers
             ViewBag.Message = "Mi pagina de reservas";
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult GuardarReserva(Pago pago) 
+        {
+
+            return RedirectToAction("Index");
         }
 
     }

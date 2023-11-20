@@ -7,11 +7,11 @@ namespace Hotel_Bengali.Models
 {
     public class Habitacion
     {
-        public int id { get; set; }
-        public string numero { get; set; }
-        public string estado { get; set; }
-        public string tipo { get; set;}
-        public Double precio { get; set;}
+        public int Id { get; set; }
+        public string Numero { get; set; }
+        public string Estado { get; set; }
+        public string Tipo { get; set;}
+        public Double Precio { get; set;}
 
     }
 }

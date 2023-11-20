@@ -7,12 +7,12 @@ namespace Hotel_Bengali.Models
 {
     public class Domicilio
     {
-        public int id { get; set; }
-        public string calle { get; set; }
-        public string numero { get; set; }
-        public string ciudad { get; set; }
-        public string codigoPostal { get; set; }
-        public string pais { get; set; }
-        public string provincia { get; set; }
+        public int Id { get; set; }
+        public string Calle { get; set; }
+        public string Numero { get; set; }
+        public string Ciudad { get; set; }
+        public string CodigoPostal { get; set; }
+        public string Pais { get; set; }
+        public string Provincia { get; set; }
     }
 }

@@ -7,12 +7,12 @@ namespace Hotel_Bengali.Models
 {
     public class Reserva
     {
-        public int id { get; set; }
-        public Reserva reserva { get; set; }
-        public Habitacion habitacion { get; set; }
-        public DateTime fecjaIngreso { get; set; }
-        public DateTime fechaEgreso { get; set; }
-        public string estado { get;set; }
+        public int Id { get; set; }
+        public int NumeroReserva { get; set; }
+        public Habitacion Habitacion { get; set; }
+        public DateTime FechaIngreso { get; set; }
+        public DateTime FechaEgreso { get; set; }
+        public string Estado { get;set; }
 
     }
 }

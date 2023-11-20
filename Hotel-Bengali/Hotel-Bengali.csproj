@@ -121,6 +121,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Enumerations\EnumFormaPago.cs" />
+    <Compile Include="Enumerations\EnumGenero.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -128,9 +130,11 @@
     <Compile Include="Models\Excursion.cs" />
     <Compile Include="Models\Habitacion.cs" />
     <Compile Include="Models\Huesped.cs" />
+    <Compile Include="Models\HuespedReserva.cs" />
     <Compile Include="Models\Pago.cs" />
     <Compile Include="Models\ProductoServicio.cs" />
     <Compile Include="Models\Reserva.cs" />
+    <Compile Include="Models\vista.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
