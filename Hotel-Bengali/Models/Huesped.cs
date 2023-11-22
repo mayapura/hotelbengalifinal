@@ -16,8 +16,13 @@ namespace Hotel_Bengali.Models
         public DateTime FechaNacimiento { get; set; }
         public string Email { get; set; }
         public string Nacionalidad { get; set; }
-        public Domicilio Domicilio { get; set; }
 
-        
+        // Relación con Domicilio (uno a muchos)
+        public int DomicilioId { get; set; }
+        public virtual Domicilio Domicilio { get; set; }
+
+        // Relación muchos a muchos con Reserva
+        public virtual ICollection<Reserva> Reservas { get; set; }
+
     }
 }

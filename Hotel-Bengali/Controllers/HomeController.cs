@@ -1,4 +1,5 @@
-﻿using Hotel_Bengali.Models;
+﻿using Hotel_Bengali.Enumerations;
+using Hotel_Bengali.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,10 +56,25 @@ namespace Hotel_Bengali.Controllers
         }
 
         [HttpPost]
-        public ActionResult GuardarReserva(Pago pago) 
+        public ActionResult GuardarReserva(Pago modelo) 
         {
-
-            return RedirectToAction("Index");
+            if(modelo.FormaPago == ((int)EnumFormaPago.FormaPago.Efectivo).ToString()) 
+            {
+                modelo.FormaPago = "Efectivo";
+            }else if (modelo.FormaPago == ((int)EnumFormaPago.FormaPago.Debito).ToString()) 
+            {
+                modelo.FormaPago = "Debito";
+            }else 
+            {
+                modelo.FormaPago = "Credito";
+            }
+            using(var ctx = new hotelDbContext()) 
+            {
+                ctx.Pagos.Add(modelo);
+                ctx.SaveChanges();
+                
+            }
+            return RedirectToAction("About");
         }
 
     }

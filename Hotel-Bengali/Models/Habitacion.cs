@@ -11,7 +11,9 @@ namespace Hotel_Bengali.Models
         public string Numero { get; set; }
         public string Estado { get; set; }
         public string Tipo { get; set;}
-        public Double Precio { get; set;}
+        public double Precio { get; set;}
 
+        // Relación con Reserva (uno a muchos)
+        public virtual ICollection<Reserva> Reservas { get; set; }
     }
 }

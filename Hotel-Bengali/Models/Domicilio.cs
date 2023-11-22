@@ -14,5 +14,8 @@ namespace Hotel_Bengali.Models
         public string CodigoPostal { get; set; }
         public string Pais { get; set; }
         public string Provincia { get; set; }
+
+        // Relación con Huesped (uno a muchos)
+        public virtual ICollection<Huesped> Huespedes { get; set; }
     }
 }
